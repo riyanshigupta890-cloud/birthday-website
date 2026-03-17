@@ -270,7 +270,7 @@ button:hover {
 
 /* envelope */
 
-#step5.envelope{
+#step5 .envelope{
     position:relative;
     width:260px;
     height:160px;
@@ -283,7 +283,7 @@ button:hover {
 
 /* flap */
 
-#step5.flap{
+#step5 .flap{
     position:absolute;
     top:0;
     width:100%;
@@ -296,7 +296,7 @@ button:hover {
 
 /* letter */
 
-#step5.letter{
+#step5 .letter{
     position:absolute;
     bottom:-300px;
     width:100%;
@@ -311,7 +311,7 @@ button:hover {
 
 /* button */
 
-#step5.open-btn{
+#step5 .open-btn{
     margin-top:25px;
     padding:10px 20px;
     border:none;
@@ -426,10 +426,16 @@ window.onload = function() {
         document.getElementById("poppers").style.display = "none";
     }, 3000);
 }
+function openLetter() {
 
-function openLetter(){
-    document.querySelector("#step5 .flap").style.transform = "rotateX(180deg)";
-    document.querySelector("#step5 .letter").style.bottom = "0";
+    const flap = document.querySelector("#step5 .flap");
+    const letter = document.querySelector("#step5 .letter");
+
+    if(flap && letter){
+        flap.style.transform = "rotateX(180deg)";
+        letter.style.bottom = "0";
+    }
+
 }
 function nextStep() {
     document.getElementById("step1").classList.add("hidden");
