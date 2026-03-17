@@ -18,69 +18,53 @@ body {
 /* HIDDEN */
 .hidden { display: none; }
 
-/* 🎀 POPUP */
-.popup {
+/* FULL SCREEN POPPER */
+#poppers {
     position: fixed;
     width: 100%;
     height: 100%;
-    background: rgba(255,240,250,0.95);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+    top: 0;
+    left: 0;
+    background: #fff0f5;
+    z-index: 999;
+    overflow: hidden;
 }
 
-.popup-content {
-    background: #ffe4ec;
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-}
-
-.popup button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    border: none;
-    background: #d291bc;
-    color: white;
-    border-radius: 20px;
-    cursor: pointer;
-}
-
-/* 🎉 POPPERS */
+/* POPPERS */
 .popper {
     position: absolute;
-    bottom: 0;
-    font-size: 45px;
+    bottom: 20px;
+    font-size: 60px;
 }
-.popper.left { left: 20px; }
-.popper.right { right: 20px; }
-.popper::before { content: "🎉"; }
+.popper.left { left: 30px; }
+.popper.right { right: 30px; }
 
-/* ✨ PARTICLES */
+/* PARTICLES */
 .particles span {
     position: absolute;
     bottom: 0;
-    animation: shoot 5s ease-out infinite;
+    font-size: 22px;
+    animation: blast 3s ease-out forwards;
 }
 
-.confetti::before { content: "🎊"; }
-.ribbon::before { content: "🎀"; }
-.sparkle::before { content: "✨"; }
-.balloon::before { content: "🎈"; }
-.star::before { content: "💫"; }
+/* RANDOM POSITIONS */
+.particles span:nth-child(1) { left: 20%; animation-delay: 0s; }
+.particles span:nth-child(2) { left: 40%; animation-delay: 0.3s; }
+.particles span:nth-child(3) { left: 60%; animation-delay: 0.6s; }
+.particles span:nth-child(4) { left: 75%; animation-delay: 0.9s; }
+.particles span:nth-child(5) { left: 90%; animation-delay: 1.2s; }
 
-.confetti { left: 20%; animation-delay: 0s; }
-.ribbon { left: 40%; animation-delay: 1s; }
-.sparkle { left: 60%; animation-delay: 2s; }
-.balloon { left: 75%; animation-delay: 3s; }
-.star { left: 90%; animation-delay: 4s; }
-
-@keyframes shoot {
-    0% { transform: translateY(0); opacity: 1; }
-    100% { transform: translateY(-500px); opacity: 0; }
+/* BLAST ANIMATION */
+@keyframes blast {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-600px) scale(1.5);
+        opacity: 0;
+    }
 }
-
 .container {
     position: relative;
     z-index: 2;
@@ -279,24 +263,16 @@ button:hover {
 </head>
 
 <body>
-<div id="popup" class="popup">
-    <div class="popup-content">
-        <h1>Happy Birthday Love 💖</h1>
-        <p>You make everything special ✨</p>
-        <button onclick="startSite()">Start 🎉</button>
-    </div>
+    <div id="poppers">
+    <div class="popper left">🎉</div>
+    <div class="popper right">🎉</div>
 
-    <!-- 🎉 POPPERS -->
-    <div class="popper left"></div>
-    <div class="popper right"></div>
-
-    <!-- ✨ PARTICLES -->
     <div class="particles">
-        <span class="confetti"></span>
-        <span class="ribbon"></span>
-        <span class="sparkle"></span>
-        <span class="balloon"></span>
-        <span class="star"></span>
+        <span>🎊</span>
+        <span>🎀</span>
+        <span>✨</span>
+        <span>🎈</span>
+        <span>💫</span>
     </div>
 </div>
 <div class="container">
@@ -359,8 +335,10 @@ button:hover {
 </div>
 
 <script>
-function startSite() {
-    document.getElementById("popup").style.display = "none";
+window.onload = function() {
+    setTimeout(() => {
+        document.getElementById("poppers").style.display = "none";
+    }, 3000);
 }
     
 function nextStep() {
