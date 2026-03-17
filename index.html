@@ -9,10 +9,76 @@
 <style>
 body {
     margin: 0;
-    background: linear-gradient(135deg, #fceff9, #e0c3fc, #f9d5ec);
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to bottom, #fff0f5, #ffe4ec);
     text-align: center;
-    overflow: hidden;
+    overflow-x: hidden;
+}
+
+/* HIDDEN */
+.hidden { display: none; }
+
+/* 🎀 POPUP */
+.popup {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,240,250,0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup-content {
+    background: #ffe4ec;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.popup button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    background: #d291bc;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+/* 🎉 POPPERS */
+.popper {
+    position: absolute;
+    bottom: 0;
+    font-size: 45px;
+}
+.popper.left { left: 20px; }
+.popper.right { right: 20px; }
+.popper::before { content: "🎉"; }
+
+/* ✨ PARTICLES */
+.particles span {
+    position: absolute;
+    bottom: 0;
+    animation: shoot 5s ease-out infinite;
+}
+
+.confetti::before { content: "🎊"; }
+.ribbon::before { content: "🎀"; }
+.sparkle::before { content: "✨"; }
+.balloon::before { content: "🎈"; }
+.star::before { content: "💫"; }
+
+.confetti { left: 20%; animation-delay: 0s; }
+.ribbon { left: 40%; animation-delay: 1s; }
+.sparkle { left: 60%; animation-delay: 2s; }
+.balloon { left: 75%; animation-delay: 3s; }
+.star { left: 90%; animation-delay: 4s; }
+
+@keyframes shoot {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-500px); opacity: 0; }
 }
 
 .container {
@@ -79,67 +145,92 @@ button:hover {
 }
 
 /* Photos */
-.photos {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 40px;
-}
-
-/* Each hanging photo */
-.photo-item {
+/* Full screen container */
+.memory-section {
     position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Banner at top */
+.banner {
+    background: url("banner.png") no-repeat center;
+    background-size: contain;
+    width: 100%;
+    height: 120px;
+    position: absolute;
+    top: 0;
+}
+
+/* Photos container */
+.photos {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* Each photo hanging */
+.photo-item {
+    position: absolute;
+    top: 120px; /* just below ribbon */
     opacity: 0;
-    transform: translateY(-50px);
-    animation: dropIn 1s ease forwards, swing 3s ease-in-out infinite;
+    animation: dropIn 1s ease forwards, swing 4s ease-in-out infinite;
 }
 
-/* Delay for each photo */
-.photo-item:nth-child(1) { animation-delay: 1s; }
-.photo-item:nth-child(2) { animation-delay: 8s; }
-.photo-item:nth-child(3) { animation-delay: 15s; }
-
-/* Photo styling */
+/* Big aesthetic photos */
 .photo-item img {
-    width: 130px;
-    height: 130px;
-    border-radius: 15px;
+    width: 200px;
+    height: 200px;
     object-fit: cover;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
 
-/* Ribbon line */
+/* Hanging string */
 .photo-item::before {
     content: "";
     position: absolute;
-    top: -40px;
+    top: -60px;
     left: 50%;
     width: 2px;
-    height: 40px;
+    height: 60px;
     background: #d291bc;
     transform: translateX(-50%);
 }
 
-/* Ribbon bow 🎀 */
+/* Ribbon bow */
 .photo-item::after {
     content: "🎀";
     position: absolute;
-    top: -55px;
+    top: -75px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 18px;
 }
+
+/* Different positions + delays */
+.p1 { left: 10%; transform: translateY(0); animation-delay: 1s; }
+.p2 { left: 30%; transform: translateY(40px); animation-delay: 6s; }
+.p3 { left: 50%; transform: translateY(10px); animation-delay: 11s; }
+.p4 { left: 70%; transform: translateY(50px); animation-delay: 16s; }
+.p5 { left: 85%; transform: translateY(20px); animation-delay: 21s; }
 
 /* Drop animation */
 @keyframes dropIn {
     from {
         opacity: 0;
-        transform: translateY(-50px) rotate(0deg);
+        transform: translateY(-80px);
     }
     to {
         opacity: 1;
-        transform: translateY(0) rotate(0deg);
+        transform: translateY(0);
     }
+}
+
+/* Swing effect */
+@keyframes swing {
+    0% { transform: rotate(0deg); }
+    50% { transform: rotate(2deg); }
+    100% { transform: rotate(-2deg); }
 }
 
 /* Heart */
@@ -152,27 +243,62 @@ button:hover {
     z-index: 0;
     text-shadow: 0 0 10px pink;
 }
-
-@keyframes floatUp {
-    0% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(-110vh);
-        opacity: 0;
-    }
-}
-
 @keyframes floatUp {
     0% { transform: translateY(0); opacity: 1;}
     100% { transform: translateY(-500px); opacity: 0;}
+}
+    .memory-text {
+    position: absolute;
+    bottom: 120px;
+    width: 100%;
+    font-size: 28px;
+    color: #d291bc;
+    opacity: 0;
+    animation: fadeIn 2s forwards;
+    animation-delay: 26s;
+}
+
+.surprise-btn {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    padding: 12px 25px;
+    border-radius: 25px;
+    background: #ffb6c1;
+    color: white;
+    animation: fadeIn 2s forwards;
+    animation-delay: 30s;
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
 }
 </style>
 </head>
 
 <body>
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <h1>Happy Birthday Love 💖</h1>
+        <p>You make everything special ✨</p>
+        <button onclick="startSite()">Start 🎉</button>
+    </div>
 
+    <!-- 🎉 POPPERS -->
+    <div class="popper left"></div>
+    <div class="popper right"></div>
+
+    <!-- ✨ PARTICLES -->
+    <div class="particles">
+        <span class="confetti"></span>
+        <span class="ribbon"></span>
+        <span class="sparkle"></span>
+        <span class="balloon"></span>
+        <span class="star"></span>
+    </div>
+</div>
 <div class="container">
 
     <!-- STEP 1 -->
@@ -201,15 +327,24 @@ button:hover {
     </div>
 
     <!-- STEP 4 -->
-    <div id="step4" class="hidden">
-        <h1>Our Memories 📸</h1>
-      <div class="photos">
-    <div class="photo-item"><img src="photo1.jpg"></div>
-    <div class="photo-item"><img src="photo2.jpg"></div>
-    <div class="photo-item"><img src="photo3.jpg"></div>
-</div>
-        <button onclick="showHeart()">Last surprise 💘</button>
+ <div id="step4" class="hidden">
+    <div class="memory-section">
+        <!-- Ribbon -->
+        <div class="banner"></div>
+        <!-- Hanging Photos -->
+        <div class="photos">
+            <div class="photo-item p1"><img src="photo1.jpg"></div>
+            <div class="photo-item p2"><img src="photo2.jpg"></div>
+            <div class="photo-item p3"><img src="photo3.jpg"></div>
+            <div class="photo-item p4"><img src="photo4.jpg"></div>
+            <div class="photo-item p5"><img src="photo5.jpg"></div>
+        </div>
+        <!-- Memory Text -->
+        <h2 class="memory-text">Your Memories 💖</h2>
+        <!-- IMPORTANT: keep your function -->
+        <button class="surprise-btn" onclick="showHeart()">Last Surprise 💘</button>
     </div>
+</div>
 
     <!-- STEP 5 -->
     <div id="step5" class="hidden">
@@ -224,6 +359,10 @@ button:hover {
 </div>
 
 <script>
+function startSite() {
+    document.getElementById("popup").style.display = "none";
+}
+    
 function nextStep() {
     document.getElementById("step1").classList.add("hidden");
     document.getElementById("step2").classList.remove("hidden");
