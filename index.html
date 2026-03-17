@@ -1,13 +1,188 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>For You 💖</title>
+<meta charset="UTF-8">
+<title>For Aarohi 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins&family=Playfair+Display&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    background: linear-gradient(to top, #fceff9, #e0c3fc);
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    overflow: hidden;
+}
+
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    color: #d291bc;
+}
+
+p {
+    color: #6d4c63;
+    font-size: 16px;
+}
+
+button {
+    background-color: #d291bc;
+    border: none;
+    padding: 12px 25px;
+    color: white;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+/* Cake */
+.cake {
+    font-size: 100px;
+    animation: float 2s infinite;
+}
+
+/* Candle */
+.candle {
+    font-size: 80px;
+}
+
+/* Floating animation */
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+
+/* Hidden */
+.hidden {
+    display: none;
+}
+
+/* Photos */
+.photos img {
+    width: 120px;
+    height: 120px;
+    border-radius: 15px;
+    margin: 10px;
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Heart animation */
+.heart {
+    position: absolute;
+    font-size: 25px;
+    color: pink;
+    animation: floatUp 3s linear infinite;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0); opacity: 1;}
+    100% { transform: translateY(-500px); opacity: 0;}
+}
+</style>
 </head>
 
-<body style="text-align:center; background-color:#fceff9; font-family:sans-serif;">
+<body>
 
-<h1>Happy Birthday 🎂</h1>
-<p>This is just the beginning 💌</p>
+<div class="container">
+
+    <!-- STEP 1 -->
+    <div id="step1">
+        <h1>Happy Birthday Aarohi 🎂</h1>
+        <div class="cake">🎂</div>
+        <button onclick="nextStep()">For you 💌</button>
+    </div>
+
+    <!-- STEP 2 -->
+    <div id="step2" class="hidden">
+        <h1>Aarohi, make a wish 🕯️</h1>
+        <div id="candle" class="candle">🕯️</div>
+        <button onclick="blowCandle()">Blow the candle 💨</button>
+    </div>
+
+    <!-- STEP 3 -->
+    <div id="step3" class="hidden">
+        <h1>For you, Aarohi 💖</h1>
+        <p>
+            I don’t say this enough… but you really mean a lot to me.<br><br>
+            In a world full of temporary people,<br>
+            you stayed… and that means everything.<br><br>
+            You’re not just my best friend,<br>
+            you’re my comfort, my safe place, my constant 🫶
+        </p>
+        <button onclick="showPhotos()">Our memories 📸</button>
+    </div>
+
+    <!-- STEP 4 -->
+    <div id="step4" class="hidden">
+        <h1>Me & You, Aarohi 📸</h1>
+        <div class="photos">
+            <img src="photo1.jpg">
+            <img src="photo2.jpg">
+            <img src="photo3.jpg">
+        </div>
+        <button onclick="showHeart()">One last thing 💘</button>
+    </div>
+
+    <!-- STEP 5 -->
+    <div id="step5" class="hidden">
+        <h1>Aarohi… you’re my favorite person 💖</h1>
+        <p>
+            No matter what happens,<br>
+            I’ll always be there for you.<br><br>
+            You’re stuck with me forever 😌💗
+        </p>
+    </div>
+
+</div>
+
+<script>
+function nextStep() {
+    document.getElementById("step1").classList.add("hidden");
+    document.getElementById("step2").classList.remove("hidden");
+}
+
+function blowCandle() {
+    document.getElementById("candle").innerHTML = "🕯️✨";
+    setTimeout(() => {
+        document.getElementById("step2").classList.add("hidden");
+        document.getElementById("step3").classList.remove("hidden");
+    }, 1500);
+}
+
+function showPhotos() {
+    document.getElementById("step3").classList.add("hidden");
+    document.getElementById("step4").classList.remove("hidden");
+}
+
+function showHeart() {
+    document.getElementById("step4").classList.add("hidden");
+    document.getElementById("step5").classList.remove("hidden");
+
+    setInterval(createHeart, 300);
+}
+
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "💖";
+
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 3000);
+}
+</script>
 
 </body>
 </html>
