@@ -156,11 +156,12 @@ button:hover {
 }
 
 /* each photo */
-.photo-item {
+.photo-item{
     position: relative;
-    animation: swing 4s ease-in-out infinite;
+    opacity:0;
+    transform:translateY(-40px);
+    animation:dropPhoto 1s forwards;
 }
-
 /* photos */
 .photo-item img {
     width: 180px;
@@ -197,16 +198,23 @@ button:hover {
     50% { transform: rotate(2deg); }
     100% { transform: rotate(-2deg); }
 }
-@keyframes dropPhoto {
-    0% {
-        transform: translateY(-200px);
-        opacity: 0;
+@keyframes dropPhoto{
+    0%{
+        opacity:0;
+        transform:translateY(-80px);
     }
-    100% {
-        transform: translateY(0);
-        opacity: 1;
+
+    100%{
+        opacity:1;
+        transform:translateY(0);
     }
 }
+    /* photo delays */
+.p1{ animation-delay:0s;}
+.p2{animation-delay:3s;}
+.p3{animation-delay:6s;}
+.p4{animation-delay:9s;}
+.p5{animation-delay:12s;}
 /* Heart */
 .heart {
     position: fixed;
