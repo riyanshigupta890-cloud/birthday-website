@@ -260,60 +260,61 @@ button:hover {
 @keyframes fadeIn {
     to { opacity: 1; }
 }
-    
-.letter-section{
-    text-align:center;
-    margin-top:100px;
+.letter-container{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    height:100vh;
 }
 
-/* envelope body */
+/* envelope */
 
 .envelope{
     position:relative;
-    width:250px;
-    height:150px;
+    width:260px;
+    height:160px;
     background:#ffb6c1;
-    margin:auto;
-    cursor:pointer;
     border-radius:6px;
+    cursor:pointer;
     overflow:hidden;
 }
 
-/* envelope flap */
+/* flap */
 
 .flap{
     position:absolute;
     top:0;
-    left:0;
     width:100%;
     height:100%;
     background:#ff8fab;
     clip-path: polygon(0 0,100% 0,50% 60%);
-    transition: transform 1s;
     transform-origin:top;
+    transition:transform 1s;
 }
 
 /* letter */
 
 .letter{
     position:absolute;
-    bottom:-150px;
+    bottom:-260px;
     width:100%;
-    height:150px;
+    height:260px;
     background:white;
     padding:20px;
     box-sizing:border-box;
+    text-align:center;
     transition:bottom 1s;
-    font-size:14px;
+    border-radius:10px;
 }
 
-/* open button */
+/* button */
 
 .open-btn{
-    margin-top:30px;
+    margin-top:25px;
     padding:10px 20px;
     border:none;
-    border-radius:20px;
+    border-radius:25px;
     background:#ff8fab;
     color:white;
     font-size:16px;
@@ -405,19 +406,27 @@ button:hover {
 </div>
 
     <!-- STEP 5 -->
-    <div id="step5" class="hidden">
-        <h1>You’re my favorite person 💖</h1>
-        <p>
-            I hope that we should have met earlier so that we can spent more time together😭❤️
-            No matter what happens,<br>
-            I’ll always be there for you.🫠❤️<br><br>
-            I always cherish that time which I have spent with you 🫶🏻🥹
-            If we are in the opposite gender then surely..,<br>
-            I will fall for you and do each and every thing for you that you really deserve 💋🧿❤️<br><br>
-            "Happy birthday to the person who makes my life brighter!!!" 😭🫂💗💋🫶🏻🎀<br><br>
-            You’re stuck with me forever 😋💗
-        </p>
+  <div id="step5" class="hidden">
+    <div class="letter-container">
+        <div class="envelope" onclick="openLetter()">
+            <div class="flap"></div>
+            <div class="letter">
+                <h1>You’re my favorite person 💖</h1>
+                <p>
+                I hope that we should have met earlier so that we can spent more time together😭❤️
+                No matter what happens,<br>
+                I’ll always be there for you.🫠❤️<br><br>
+                I always cherish that time which I have spent with you 🫶🏻🥹
+                If we are in the opposite gender then surely..,<br>
+                I will fall for you and do each and every thing for you that you really deserve 💋🧿❤️<br><br>
+                "Happy birthday to the person who makes my life brighter!!!" 😭🫂💗💋🫶🏻🎀<br><br>
+                You’re stuck with me forever 😋💗
+                </p>
+            </div>
+        </div>
+        <button class="open-btn" onclick="openLetter()">Open Letter 💌</button>
     </div>
+</div>
 
 </div>
 
