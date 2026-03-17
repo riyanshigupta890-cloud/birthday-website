@@ -141,34 +141,36 @@ button:hover {
 /* Full screen container */
 .memory-section {
     position: relative;
-   height: 120vh;
-    overflow: hidden;
+    min-height: 100vh;
+    padding-top: 120px;
+    text-align: center;
 }
+
 /* Photos container */
 .photos {
-    position: relative;
-    width: 100%;
-    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    margin-top: 40px;
 }
 
-/* Each photo hanging */
+/* each photo */
 .photo-item {
-    position: absolute;
-    top: 140px; /* just below ribbon */
-    opacity: 0;
-    animation: dropIn 1s ease forwards, swing 4s ease-in-out infinite;
+    position: relative;
+    animation: swing 4s ease-in-out infinite;
 }
 
-/* Big aesthetic photos */
+/* photos */
 .photo-item img {
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 180px;
     object-fit: cover;
     border-radius: 15px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
 
-/* Hanging string */
+/* string */
 .photo-item::before {
     content: "";
     position: absolute;
@@ -180,7 +182,7 @@ button:hover {
     transform: translateX(-50%);
 }
 
-/* Ribbon bow */
+/* ribbon bow */
 .photo-item::after {
     content: "🎀";
     position: absolute;
@@ -189,31 +191,22 @@ button:hover {
     transform: translateX(-50%);
 }
 
-/* Different positions + delays */
-.p1 { left: 10%; animation-delay: 1s; }
-.p2 { left: 30%; animation-delay: 2s; }
-.p3 { left: 50%; animation-delay: 3s; }
-.p4 { left: 70%; animation-delay: 4s; }
-.p5 { left: 85%; animation-delay: 5s; }
-
-/* Drop animation */
-@keyframes dropIn {
-    from {
-        opacity: 0;
-        transform: translateY(-80px) rotate(0deg);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) rotate(0deg);
-    }
-}
-/* Swing effect */
+/* swing animation */
 @keyframes swing {
-    0% { transform: translateY(0) rotate(-2deg); }
-    50% { transform: translateY(0) rotate(2deg); }
-    100% { transform: translateY(0) rotate(-2deg); }
+    0% { transform: rotate(-2deg); }
+    50% { transform: rotate(2deg); }
+    100% { transform: rotate(-2deg); }
 }
-
+@keyframes dropPhoto {
+    0% {
+        transform: translateY(-200px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
 /* Heart */
 .heart {
     position: fixed;
@@ -228,26 +221,26 @@ button:hover {
     0% { transform: translateY(0); opacity: 1;}
     100% { transform: translateY(-500px); opacity: 0;}
 }
-   .memory-text {
+  .memory-text {
     position: absolute;
-    top: 60%;
+    top: 55%;
     width: 100%;
-    font-size: 50px;
+    font-size: 45px;
     color: #d291bc;
     text-align: center;
-    z-index: 5;   /* ADD THIS */
+    z-index: 5;
     opacity: 0;
     animation: fadeIn 2s forwards;
     animation-delay: 6s;
     text-shadow: 0 0 15px rgba(210,145,188,0.8);
 }
-}
+
 .surprise-btn {
     position: absolute;
-    top: 75%;
-    left: 50%;   /* ADD THIS (missing) */
+    top: 68%;
+    left: 50%;
     transform: translateX(-50%);
-    z-index: 5;  /* ADD THIS */
+    z-index: 5;
     opacity: 0;
     padding: 12px 25px;
     border-radius: 25px;
@@ -256,7 +249,6 @@ button:hover {
     animation: fadeIn 2s forwards;
     animation-delay: 8s;
 }
-
 @keyframes fadeIn {
     to { opacity: 1; }
 }
