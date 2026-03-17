@@ -5,10 +5,10 @@
 <title>SHRISTY'S BIRTHDAY❤️🎂</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Playfair+Display&display=swap" rel="stylesheet">
+<style>
 <audio id="bgMusic" loop>
     <source src="song.mp3" type="audio/mpeg">
 </audio>
-<style>
 body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
@@ -346,7 +346,7 @@ button:hover {
     <div id="step1">
         <h1>Happy Birthday Love 💗💋</h1>
         <div class="cake">🎂</div>
-        <button onclick="startMusic(); nextStep()">Click me 💌</button>
+        <button onclick="startMusic(); nextStep()">Start Surprise 🎁</button>
     </div>
 
     <!-- STEP 2 -->
@@ -431,10 +431,9 @@ window.onload = function() {
 }
 
 function startMusic(){
-    const music = document.getElementById("bgMusic");
-    music.play();
+    document.getElementById("bgMusic").play();
 }
-    
+
 function openLetter() {
 
     const flap = document.querySelector("#step5 .flap");
