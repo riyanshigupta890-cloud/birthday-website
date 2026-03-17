@@ -9,35 +9,50 @@
 <style>
 body {
     margin: 0;
-    background: linear-gradient(to top, #fceff9, #e0c3fc);
+    background: linear-gradient(135deg, #fceff9, #e0c3fc, #f9d5ec);
     font-family: 'Poppins', sans-serif;
     text-align: center;
     overflow: hidden;
 }
 
 .container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 20px;
+    margin-top: 100px;
 }
 
 h1 {
     font-family: 'Playfair Display', serif;
     color: #d291bc;
+    font-size: 42px;
+    margin-bottom: 15px;
+    text-shadow: 0 0 10px rgba(210,145,188,0.5);
 }
 
 p {
     color: #6d4c63;
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 500px;
+    margin: 0 auto;
 }
 
 button {
-    background-color: #d291bc;
+    background: linear-gradient(45deg, #d291bc, #ffb6c1);
     border: none;
     padding: 12px 25px;
     color: white;
     border-radius: 25px;
     cursor: pointer;
+    margin-top: 25px;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.05);
 }
 
 /* Cake */
@@ -64,19 +79,89 @@ button {
 }
 
 /* Photos */
-.photos img {
-    width: 120px;
-    height: 120px;
+.photos {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+/* Each hanging photo */
+.photo-item {
+    position: relative;
+    opacity: 0;
+    transform: translateY(-50px);
+    animation: dropIn 1s ease forwards, swing 3s ease-in-out infinite;
+}
+
+/* Delay for each photo */
+.photo-item:nth-child(1) { animation-delay: 1s; }
+.photo-item:nth-child(2) { animation-delay: 8s; }
+.photo-item:nth-child(3) { animation-delay: 15s; }
+
+/* Photo styling */
+.photo-item img {
+    width: 130px;
+    height: 130px;
     border-radius: 15px;
-    margin: 10px;
     object-fit: cover;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+/* Ribbon line */
+.photo-item::before {
+    content: "";
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    width: 2px;
+    height: 40px;
+    background: #d291bc;
+    transform: translateX(-50%);
+}
+
+/* Ribbon bow 🎀 */
+.photo-item::after {
+    content: "🎀";
+    position: absolute;
+    top: -55px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 18px;
+}
+
+/* Drop animation */
+@keyframes dropIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px) rotate(0deg);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) rotate(0deg);
+    }
 }
 
 /* Heart */
 .heart {
-    position: absolute;
-    font-size: 25px;
-    animation: floatUp 3s linear infinite;
+    position: fixed;
+    bottom: -20px;
+    font-size: 22px;
+    color: pink;
+    animation: floatUp 4s linear forwards;
+    z-index: 0;
+    text-shadow: 0 0 10px pink;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-110vh);
+        opacity: 0;
+    }
 }
 
 @keyframes floatUp {
@@ -118,11 +203,11 @@ button {
     <!-- STEP 4 -->
     <div id="step4" class="hidden">
         <h1>Our Memories 📸</h1>
-        <div class="photos">
-            <img src="photo1.jpg">
-            <img src="photo2.jpg">
-            <img src="photo3.jpg">
-        </div>
+      <div class="photos">
+    <div class="photo-item"><img src="photo1.jpg"></div>
+    <div class="photo-item"><img src="photo2.jpg"></div>
+    <div class="photo-item"><img src="photo3.jpg"></div>
+</div>
         <button onclick="showHeart()">Last surprise 💘</button>
     </div>
 
@@ -161,7 +246,7 @@ function showHeart() {
     document.getElementById("step4").classList.add("hidden");
     document.getElementById("step5").classList.remove("hidden");
 
-    setInterval(createHeart, 300);
+    setInterval(createHeart, 200);
 }
 
 function createHeart() {
@@ -169,12 +254,14 @@ function createHeart() {
     heart.classList.add("heart");
     heart.innerHTML = "💖";
 
+    // Spread hearts across screen
     heart.style.left = Math.random() * window.innerWidth + "px";
+
     document.body.appendChild(heart);
 
     setTimeout(() => {
         heart.remove();
-    }, 3000);
+    }, 4000);
 }
 </script>
 
