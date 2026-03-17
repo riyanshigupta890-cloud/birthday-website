@@ -278,6 +278,7 @@ button:hover {
     border-radius:6px;
     cursor:pointer;
     overflow:hidden;
+    border:2px solid red;
 }
 
 /* flap */
@@ -356,7 +357,6 @@ button:hover {
     <div id="step3" class="hidden">
         <h1>To My Girlfriend🤗❤️</h1>
         <p>
-            
             Happy Birthday To The One Who has "THE PRETTY EYES"👀 <br><br>
             I love you so much that this website also can't tell anything 🥰<br><br>
             You are the best and you have my back in every situation remember that🥹💅<br><br>
@@ -389,27 +389,34 @@ button:hover {
 </div>
 
     <!-- STEP 5 -->
-  <div id="step5" class="hidden">
+<div id="step5" class="hidden">
+
     <div class="letter-container">
+
         <div class="envelope" onclick="openLetter()">
+
             <div class="flap"></div>
+
             <div class="letter">
                 <h1>You’re my favorite person 💖</h1>
+
                 <p>
-                I hope that we should have met earlier so that we can spent more time together😭❤️
-                No matter what happens,<br>
-                I’ll always be there for you.🫠❤️<br><br>
-                I always cherish that time which I have spent with you 🫶🏻🥹
-                If we are in the opposite gender then surely..,<br>
-                I will fall for you and do each and every thing for you that you really deserve 💋🧿❤️<br><br>
-                "Happy birthday to the person who makes my life brighter!!!" 😭🫂💗💋🫶🏻🎀<br><br>
-                You’re stuck with me forever 😋💗
+                I hope that we should have met earlier so that we can spent more time together 😭❤️ <br><br>
+
+                No matter what happens, I’ll always be there for you. 🫠❤️ <br><br>
+
+                I always cherish that time which I have spent with you 🫶🏻🥹 <br><br>
+
+                "Happy birthday to the person who makes my life brighter!!!" 🎂💗
                 </p>
+
             </div>
+
         </div>
+
         <button class="open-btn" onclick="openLetter()">Open Letter 💌</button>
+
     </div>
-</div>
 
 </div>
 
@@ -421,8 +428,8 @@ window.onload = function() {
 }
 
 function openLetter(){
-    document.querySelector(".flap").style.transform = "rotateX(180deg)";
-    document.querySelector(".letter").style.bottom = "0";
+    document.querySelector("#step5 .flap").style.transform = "rotateX(180deg)";
+    document.querySelector("#step5 .letter").style.bottom = "0";
 }
 function nextStep() {
     document.getElementById("step1").classList.add("hidden");
